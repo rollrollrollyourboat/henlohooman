@@ -4,7 +4,6 @@ class StickerGiver():
   def __init__(self):
     with open('stickers/stickers.txt', 'r') as f:
       self._stickers = f.readlines()
-      print(self._stickers)
 
   def pollSticker(self):
     returnString = self._stickers[random.randint(0, len(self._stickers) - 1)]
