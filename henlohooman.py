@@ -1,13 +1,14 @@
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
-import joke_teller as jokes
+import joke_giver as jokes
 import image_giver as images
+import sticker_giver as stickers
 import joke_filter as jokeFilter
 import image_filter as imageFilter
 import gif_filter as gifFilter
 import sticker_filter as stickerFilter
-import send_sticker as stickers
+
 
 import logging
 
@@ -18,9 +19,9 @@ dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         level=logging.INFO)
 
-joke_teller = jokes.JokeTeller();
+joke_giver = jokes.JokeGiver();
 image_giver = images.ImageGiver();
-sticker_sender = stickers.StickerSender();
+sticker_sender = stickers.StickerGiver();
 
 
 def start(bot, update):
@@ -30,19 +31,19 @@ def getImage(bot, update):
   bot.send_photo(chat_id=update.message.chat_id, photo=open(image_giver.pollImage(), 'rb'))  
   
 def getJoke(bot, update):
-  bot.send_message(chat_id=update.message.chat_id, text=joke_teller.pollJoke())
+  bot.send_message(chat_id=update.message.chat_id, text=joke_giver.pollJoke())
 
 def getGif(bot, update):
   link = "https://media.tenor.com/images/6f61d7cc7cecb9c2046f4baf0e71d006/tenor.gif"
   bot.send_animation(chat_id=update.message.chat_id, animation=link)
   
 def getSticker(bot, update):
-  bot.send_sticker(chat_id=update.message.chat_id, sticker=sticker_sender.pollSticker())
+  bot.send_sticker(chat_id=update.message.chat_id, sticker=sticker_giver.pollSticker())
   
 #initialise the class
 image_filter = imageFilter.ImageFilter()
 joke_filter = jokeFilter.JokeFilter();
-gif_filter = gifFilter.GIFFilter()
+gif_filter = gifFilter.GifFilter()
 sticker_filter = stickerFilter.StickerFilter();
 
 
