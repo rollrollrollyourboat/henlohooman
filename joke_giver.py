@@ -1,6 +1,6 @@
 import random
 
-class JokeTeller():
+class JokeGiver():
   def __init__(self):
     with open('Jokes/jokes.txt', 'r') as f:
       self._jokes = f.read().split("\n--\n")
