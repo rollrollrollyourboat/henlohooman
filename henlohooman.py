@@ -1,6 +1,8 @@
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
-from telegram.ext import MessageHandler, Filters
+from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
 import joke_giver as jokes
 import image_giver as images
 import gif_giver as gifs
@@ -27,8 +29,22 @@ sticker_giver = stickers.StickerGiver();
 small_talk = smallTalk.SmallTalkSender();
 
 def start(bot, update):
-  bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
-  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
+  keyboard = [[InlineKeyboardButton("Happy", callback_data='1'),
+               InlineKeyboardButton("Sad", callback_data='2')],
+               [InlineKeyboardButton("Feel like a doggo", callback_data='3')]];
+
+  reply_markup = InlineKeyboardMarkup(keyboard);
+
+  bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! 😌")
+  update.message.reply_text('Tell me how are you feeling todayz!',
+                            reply_markup=reply_markup);
+
+def response(bot, update):
+  query = update.callback_query
+
+  bot.edit_message_text(text="Selected option: {}".format(query.data),
+                        chat_id=query.message.chat_id,
+                        message_id=query.message.message_id);
 
 def getImage(bot, update):
   bot.send_photo(chat_id=update.message.chat_id, photo=open(image_giver.pollImage(), 'rb'))  
@@ -54,12 +70,14 @@ sticker_filter = stickerFilter.StickerFilter();
 
 
 start_handler = CommandHandler('start', start)
+response_handler = CallbackQueryHandler(response)
 joke_handler = MessageHandler(joke_filter, getJoke)
 image_handler = MessageHandler(image_filter, getImage)
 gif_handler = MessageHandler(gif_filter, getGif)
 sticker_handler = MessageHandler(sticker_filter, getSticker)
 
 dispatcher.add_handler(start_handler)
+dispatcher.add_handler(response_handler)
 dispatcher.add_handler(joke_handler)
 dispatcher.add_handler(image_handler)
 dispatcher.add_handler(gif_handler)
