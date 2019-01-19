@@ -1,6 +1,6 @@
 import random
 
-class StickerSender():
+class StickerGiver():
   def __init__(self):
     self._stickers = [
     'CAADBQADOgADsV0ZFMreYOeI4Ka6Ag',
