@@ -23,7 +23,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 joke_giver = jokes.JokeGiver();
 image_giver = images.ImageGiver();
 gif_giver = gifs.GifGiver();
-sticker_sender = stickers.StickerGiver();
+sticker_giver = stickers.StickerGiver();
 
 def start(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
