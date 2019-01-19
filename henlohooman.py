@@ -15,13 +15,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
         level=logging.INFO)
 
 joke_teller = jokes.JokeTeller();
-joke_filter = jokeFilter.JokeFilter();
 
 def start(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
 
 def imageMesg(bot, update):
-  # bot.send_message(chat_id=update.message.chat_id, text = "Image Detected :D")
   bot.send_photo(chat_id=update.message.chat_id, photo=open('Images/corgi.jpg', 'rb'))  
   
 def getJoke(bot, update):
@@ -29,6 +27,7 @@ def getJoke(bot, update):
   
 #initialise the class
 image_filter = images.ImageFilter()
+joke_filter = jokeFilter.JokeFilter();
 
 start_handler = CommandHandler('start', start)
 getJoke_handler = MessageHandler(joke_filter, getJoke)
