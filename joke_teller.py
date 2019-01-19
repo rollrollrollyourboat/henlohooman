@@ -7,5 +7,5 @@ class JokeTeller():
     'Q: Why didn\'t the elephant like to play cards in the jungle?\n\nA: A: Because there were too many cheetahs.'
     ];
 
-  def pollJokes(self):
+  def pollJoke(self):
     return self._jokes[random.randint(0, len(self._jokes) - 1)];
