@@ -2,8 +2,9 @@ from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 import joke_teller as jokes
+import image_giver as images
 import joke_filter as jokeFilter
-import image_filter as images
+import image_filter as imageFilter
 
 import logging
 
@@ -15,18 +16,19 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
         level=logging.INFO)
 
 joke_teller = jokes.JokeTeller();
+image_giver = images.ImageGiver();
 
 def start(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
 
 def imageMesg(bot, update):
-  bot.send_photo(chat_id=update.message.chat_id, photo=open('Images/corgi.jpg', 'rb'))  
+  bot.send_photo(chat_id=update.message.chat_id, photo=open(image_giver.pollImage(), 'rb'))  
   
 def getJoke(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text=joke_teller.pollJoke())
   
 #initialise the class
-image_filter = images.ImageFilter()
+image_filter = imageFilter.ImageFilter()
 joke_filter = jokeFilter.JokeFilter();
 
 start_handler = CommandHandler('start', start)
