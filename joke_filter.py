@@ -7,5 +7,5 @@ class JokeFilter(BaseFilter):
   def filter(self, message):
 
     for word in ['joke', 'tell me', 'funny', 'sad', 'cheer', 'doge']:
-      if word in message.text:
+      if word in message.text.lower():
         return True

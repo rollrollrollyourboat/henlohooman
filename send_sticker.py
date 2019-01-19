@@ -26,7 +26,19 @@ class StickerSender():
     'CAADAgADgAADNraOCMyPxzxRhO2RAg',
     'CAADBQADagEAAi1ybAF-_KGJvPaYowI',
     'CAADBQADfgEAAi1ybAH39zBspZrTwwI',
-    'CAADBQADggEAAi1ybAFPqDtliVF_hgI'
+    'CAADBQADggEAAi1ybAFPqDtliVF_hgI',
+    'CAADBQADMQIAAqadlQsMZytBHWrUNwI',
+    'CAADBQADMwIAAqadlQue52gBe6aBgQI',
+    'CAADBQADNAIAAqadlQsl6mmGDPsBnQI',
+    'CAADAgADqgEAAvFCvwWx8o2pBrgjfQI',
+    'CAADAgADsgEAAvFCvwUvp0qRowHyHAI',
+    'CAADAgADAQIAAvFCvwWHfQfPDiSeVQI',
+    'CAADAgADLwUAAvFCvwXC9WaqGRhgWAI',
+    'CAADAgADegkAAvFCvwXzqGCO6PM-zwI',
+    'CAADAgAD4QADNuwbBW5uM6aRdOCbAg',
+    'CAADAgADRAEAAjbsGwXmq3tXfidUggI',
+    'CAADAgADzgEAAjbsGwXHtqozsthoWAI',
+    'CAADAgADTwIAAjbsGwXRk3r_PWkzrwI'
     ];
 
   def pollSticker(self):
