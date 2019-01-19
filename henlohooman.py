@@ -12,7 +12,24 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                      level=logging.INFO)
 
 def start(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
+  bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
+
+def isJoke(bot, update):
+  getJoke = False
+  if 'joke' in update.message.text:
+    getJoke = True
+  elif 'tell me' in update.message.text:
+    getJoke = True
+  elif 'funny' in update.message.text:
+    getJoke = True
+  elif 'sad' in update.message.text:
+    getJoke = True
+  elif 'cheer' in update.message.text:
+    getJoke = True
+  elif 'doge' in update.message.text:
+    getJoke = True
+
+  return getjoke
 
 start_handler = CommandHandler('start', start)
 
