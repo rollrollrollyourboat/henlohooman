@@ -29,9 +29,9 @@ sticker_giver = stickers.StickerGiver();
 small_talk = smallTalk.SmallTalkSender();
 
 def start(bot, update):
-  keyboard = [[InlineKeyboardButton("Happy", callback_data='1'),
-               InlineKeyboardButton("Sad", callback_data='2')],
-               [InlineKeyboardButton("Feel like a doggo", callback_data='3')]];
+  keyboard = [[InlineKeyboardButton("Happy", callback_data='happy'),
+               InlineKeyboardButton("Sad", callback_data='sad')],
+               [InlineKeyboardButton("Feel like a doggo", callback_data='doggo')]];
 
   reply_markup = InlineKeyboardMarkup(keyboard);
 
@@ -41,6 +41,8 @@ def start(bot, update):
 
 def response(bot, update):
   query = update.callback_query
+
+  small_talk.setMood(query.data);
 
   bot.edit_message_text(text="Selected option: {}".format(query.data),
                         chat_id=query.message.chat_id,
