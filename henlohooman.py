@@ -9,7 +9,7 @@ import joke_filter as jokeFilter
 import image_filter as imageFilter
 import gif_filter as gifFilter
 import sticker_filter as stickerFilter
-
+import small_talk as smallTalk
 
 import logging
 
@@ -24,21 +24,27 @@ joke_giver = jokes.JokeGiver();
 image_giver = images.ImageGiver();
 gif_giver = gifs.GifGiver();
 sticker_giver = stickers.StickerGiver();
+small_talk = smallTalk.SmallTalkSender();
 
 def start(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text="Henlo hooman! Tell me how are you feeling today! 😌")
+  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
 
 def getImage(bot, update):
   bot.send_photo(chat_id=update.message.chat_id, photo=open(image_giver.pollImage(), 'rb'))  
+  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
   
 def getJoke(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text=joke_giver.pollJoke())
+  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
 
 def getGif(bot, update):
   bot.send_animation(chat_id=update.message.chat_id, animation=gif_giver.pollGif())
-  
+  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
+
 def getSticker(bot, update):
   bot.send_sticker(chat_id=update.message.chat_id, sticker=sticker_giver.pollSticker())
+  bot.send_message(chat_id=update.message.chat_id, text=small_talk.pollSmallTalk())
   
 #initialise the class
 image_filter = imageFilter.ImageFilter()
