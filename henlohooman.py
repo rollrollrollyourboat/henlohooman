@@ -32,10 +32,7 @@ def isJoke(bot, update):
   return getjoke
 
 start_handler = CommandHandler('start', start)
-joke_handler = MessageHandler(Filters.text, isJoke)
 
 dispatcher.add_handler(start_handler)
-dispatcher.add_handler(joke_handler)
-
 
 updater.start_polling()
