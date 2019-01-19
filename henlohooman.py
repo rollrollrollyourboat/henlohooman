@@ -3,6 +3,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 import joke_teller as jokes
 import image_giver as images
+import gif_giver as gifs
 import joke_filter as jokeFilter
 import image_filter as imageFilter
 import gif_filter as gifFilter
@@ -20,6 +21,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 joke_teller = jokes.JokeTeller();
 image_giver = images.ImageGiver();
+gif_giver = gifs.GifGiver();
 sticker_sender = stickers.StickerSender();
 
 
@@ -33,8 +35,7 @@ def getJoke(bot, update):
   bot.send_message(chat_id=update.message.chat_id, text=joke_teller.pollJoke())
 
 def getGifs(bot, update):
-  link = "https://media.tenor.com/images/6f61d7cc7cecb9c2046f4baf0e71d006/tenor.gif"
-  bot.send_animation(chat_id=update.message.chat_id, animation=link)
+  bot.send_animation(chat_id=update.message.chat_id, animation=gif_giver.pollGif())
   
 def sendSticker(bot, update):
   bot.send_sticker(chat_id=update.message.chat_id, sticker=sticker_sender.pollSticker())

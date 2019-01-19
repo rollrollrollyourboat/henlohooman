@@ -6,4 +6,4 @@ class GifGiver():
       self._gifs = f.readlines()
 
   def pollGif(self):
-    return self._gifs[random.randint(0, len(self._jokes) - 1)];
+    return self._gifs[random.randint(0, len(self._gifs) - 1)];
