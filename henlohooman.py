@@ -20,8 +20,9 @@ import logging, os
 
 NAME = "henlohooman"
 PORT = os.environ.get('PORT')
+TOKEN = "780805165:AAEdreGeX_G1ECiU6dWo2cF9UHrk545agAw"
 
-updater = Updater(token='780805165:AAEdreGeX_G1ECiU6dWo2cF9UHrk545agAw')
+updater = Updater(token=TOKEN)
 
 dispatcher = updater.dispatcher
 
