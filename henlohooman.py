@@ -126,5 +126,3 @@ updater.start_webhook(listen="0.0.0.0",
                       url_path=TOKEN)
 updater.bot.setWebhook("https://{}.herokuapp.com/{}".format(NAME, TOKEN))
 updater.idle()
-
-# updater.start_polling()
