@@ -16,7 +16,10 @@ import unglamSticker_filter as unglamStickerFilter
 import unglamsticker_giver as unglamstickers
 import short_sentence_response as shortSentenceResponse
 
-import logging
+import logging, os
+
+NAME = "henlohooman"
+PORT = os.environ.get('PORT')
 
 updater = Updater(token='780805165:AAEdreGeX_G1ECiU6dWo2cF9UHrk545agAw')
 
@@ -116,4 +119,11 @@ dispatcher.add_handler(unglamSticker_handler)
 dispatcher.add_handler(shortSentence_handler)
 dispatcher.add_handler(default_handler)
 
-updater.start_polling()
+# Start the webhook
+updater.start_webhook(listen="0.0.0.0",
+                      port=int(PORT),
+                      url_path=TOKEN)
+updater.bot.setWebhook("https://{}.herokuapp.com/{}".format(NAME, TOKEN))
+updater.idle()
+
+# updater.start_polling()
